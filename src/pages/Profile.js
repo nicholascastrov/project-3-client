@@ -1,17 +1,34 @@
-import { useContext, useEffect } from "react"
-import { LoadingContext } from "../context/loading.context"
-import { useParams } from "react-router-dom"
-
+import { useContext, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import { LoadingContext } from "../context/loading.context";
 
 const Profile = () => {
+  const { userRecipes, getUserRecipes, setIsLoading } = useContext(LoadingContext);
 
-    const { user } = useContext(LoadingContext)
+  const { userId } = useParams();
 
-    const { id } = useParams()
+  useEffect(() => {
+    setIsLoading(true);
+    getUserRecipes(userId)
+    
+  }, [userId]);
 
   return (
-    <div>Profile</div>
-  )
-}
+    <>
+      <h2>My Recipes</h2>
+      {userRecipes ? (
+        userRecipes.map((recipe) => (
+          <div key={recipe._id}>
+            <Link to={`/user-recipe-details/${recipe._id}`}>
+              <h3>{recipe.title}</h3>
+            </Link>
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </>
+  );
+};
 
-export default Profile
+export default Profile;

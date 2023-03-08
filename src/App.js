@@ -11,6 +11,8 @@ import CreateRecipes from './pages/CreateRecipes';
 import UserRecipes from './pages/UserRecipes';
 import UserRecipeDetails from './pages/UserRecipeDetails'
 import EditUserRecipe from './pages/EditUserRecipe';
+import SearchRecipeByIngredients from './pages/SearchRecipeByIngredients';
+import ShoppingList from './pages/ShoppingList';
 
 
 function App() {
@@ -46,6 +48,8 @@ function App() {
           <Route path='/profile/:id' element={<Profile />}/>
           <Route path='/add-recipe/:userId' element={<CreateRecipes />} />
           <Route path='/edit-recipe/:recipeId/:userId' element={<EditUserRecipe />} />
+          <Route path='/search-by-ingredients' element={<SearchRecipeByIngredients />} />
+          <Route path='/shopping-list/:userId' element={<ShoppingList />} />
 
         </Route>
 
