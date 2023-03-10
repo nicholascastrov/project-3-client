@@ -36,7 +36,7 @@ const LoadingProvider = ({ children }) => {
 
   const getRecipeByIngredients = (ingredient) => {
     axios
-    .get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=224dd7450e7d4cfa9bf65a747f11fd61`)
+    .get(`https://api.spoonacular.com/recipes/findByIngredients?ingredients=${ingredient}&apiKey=${process.env.REACT_APP_SPOONAPI_KEY}`)
     .then((response) => {
       console.log("New API call", response)
       setSearchByIngredients(response.data)
@@ -99,7 +99,7 @@ const LoadingProvider = ({ children }) => {
       console.log("Calling API");
       axios
         .get(
-          "https://api.spoonacular.com/food/search?apiKey=224dd7450e7d4cfa9bf65a747f11fd61&number=100"
+          `https://api.spoonacular.com/food/search?apiKey=${process.env.REACT_APP_SPOONAPI_KEY}&number=100`
         )
         .then((response) => {
           console.log(response.data);
@@ -122,7 +122,7 @@ const LoadingProvider = ({ children }) => {
     setIsLoading(true);
     axios
       .get(
-        `https://api.spoonacular.com/recipes/${id}/information?apiKey=224dd7450e7d4cfa9bf65a747f11fd61`
+        `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.REACT_APP_SPOONAPI_KEY}`
       )
       .then((response) => {
         console.log("RESPONSE", response.data);
