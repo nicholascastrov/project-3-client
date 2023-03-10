@@ -44,8 +44,6 @@ const Navbar = () => {
           </>
         )}
       </nav>
-
-      {/* <hr/> */}
           
     </div>
 
