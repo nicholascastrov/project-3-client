@@ -11,7 +11,7 @@ const UserRecipes = () => {
 
   return (
 <div className="user-recipes-container">
-  <h1 className="user-recipes-title">User Recipes</h1>
+  <h1 className="user-recipes-title">Explore User Recipes</h1>
 
   {userRecipes ? (
     <div className="recipe-list-container">

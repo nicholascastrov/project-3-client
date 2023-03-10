@@ -22,6 +22,57 @@ img{
   height: 20vh;
 }
 
+/* HOME */
+
+.home-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  margin-top: 150px;
+}
+
+.image-container {
+  margin-right: 20px;
+}
+
+.image-container img {
+  max-width: 400px;
+  height: auto;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.button-container button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-left: 20px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-container button:hover {
+  background-color: #0056b3;
+}
+
 .navbar-div {
   display: flex;
   flex-direction: row;
@@ -41,9 +92,10 @@ img{
 
 }
 
-.navbar h1{
+.navbar-header{
   font-family: 'Climate Crisis', sans-serif; 
   font-size: 2rem; 
+  font-weight: 100;
   font-weight: bold; 
   margin: 0; 
   padding: 0;
@@ -713,11 +765,13 @@ height: 5vh;
 }
 
 .recipe-item {
-  width: 48%;
+
+  width: 50%;
   margin-bottom: 20px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+
 }
 
 .recipe-link {
@@ -742,4 +796,69 @@ height: 5vh;
   margin-top: 20px;
 }
 
+/* User Recipe Details */
+
+.userRecipeDetails-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.userRecipeDetails-details h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.userRecipeDetails-details h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.userRecipeDetails-details p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.userRecipeDetails-details img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.userRecipeDetails-details ul,
+.userRecipeDetails-details ol {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.userRecipeDetails-details ul li,
+.userRecipeDetails-details ol li {
+  margin-bottom: 10px;
+}
+
+.userRecipeDetails-details button {
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.userRecipeDetails-details button:hover {
+  background-color: #0056b3;
+}
+
+.userRecipeDetails-details .userRecipeDetails-details-buttons {
+  display: flex;
+  margin-top: 20px;
+}
+
+.userRecipeDetails-details .userRecipeDetails-details-buttons button:last-child {
+  margin-right: 0;
+}
 

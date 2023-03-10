@@ -11,7 +11,7 @@ const AllRecipes = () => {
 
   return (
     <div className="all-recipes">
-      <h1>All Recipes</h1>
+      <h1>Explore All Recipes</h1>
 
       {recipes ? (
         <div className="all-recipe-grid">

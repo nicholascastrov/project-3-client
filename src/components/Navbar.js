@@ -18,9 +18,9 @@ const Navbar = () => {
 
       <nav className="navbar">
 
-      <h1>SIEVE</h1>
         
-        <Link to={"/"}>Home</Link>
+  
+        <Link to={'/'} className="navbar-header">SIEVE</Link>
         <Link to={"/all-recipes"}>All Recipes</Link>
         <Link to={"/user-recipes"}>User Recipes</Link>
 
