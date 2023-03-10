@@ -6,8 +6,10 @@ import { LoadingContext } from "./loading.context";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-  const { setIsLoading, setUser, setMessage, user } =
+  const { setIsLoading, setUser, setMessage, user, userRecipes, userRecipeDetails } =
     useContext(LoadingContext);
+
+
 
   const navigate = useNavigate();
 
@@ -18,10 +20,15 @@ const AuthProvider = ({ children }) => {
 
     if (token) {
       get("/auth/verify")
-        .then((results) => {
-          console.log("Are we logged in?", results.data);
-          setUser(results.data);
-        })
+      .then((results) => {
+        console.log(results.data)
+        setUser(results.data);
+        // get(`/users/profile/${results.data._id}`)
+        // .then((results) => {
+        //   console.log("Are we logged in?", results);
+          
+        // })
+      })
         .catch((err) => {
           localStorage.clear();
           setIsLoading(false);
@@ -30,7 +37,7 @@ const AuthProvider = ({ children }) => {
         })
         .finally(() => {
           setIsLoading(false);
-          // console.log("This is the user", user)
+          console.log("This is the user", user)
         });
     } else {
       localStorage.clear();

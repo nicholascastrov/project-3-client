@@ -23,16 +23,18 @@ const SearchRecipeByIngredients = () => {
 
   return (
 
-    <div>
+    <div className="recipe-by-ingredients-div">
 
         <h1>What's In Your Fridge</h1>
 
         <h3>Don't know what to cook?</h3>
 
-        <form onSubmit={handleSubmit}>
+        <form className="recipe-by-ingredients-form" onSubmit={handleSubmit}>
 
             <label>Find a recipe</label>
-            <input name="searchTerm" type="text" placeholder="Enter ingredients..." value={searchTerm} onChange={handleInputChange}/>
+            <p>Type in the ingredients that you want to use</p>
+            <p>We'll take care of the rest</p>
+            <input name="searchTerm" type="text" placeholder="Type ingredients separated by commas..." value={searchTerm} onChange={handleInputChange}/>
             <button>Submit</button>
 
         </form>
@@ -40,17 +42,20 @@ const SearchRecipeByIngredients = () => {
 
         {searchByIngredients ? (
 
-            <div>
+            <div className="recipe-by-ingredient">
 
                 {searchByIngredients.map((recipe) => {
                     return(
 
-                    <div key={recipe.id}>
+                    <div className="recipe-card" key={recipe.id}>
                         <Link to={`/recipe-details/${recipe.id}`}>
 
-                            <h3>{recipe.title}</h3>
-                            <img src={recipe.image} alt="recipesearch" />
-                            {/* <p>{recipe.ingredients.join(", ")}</p> */}
+                        <img src={recipe.image} alt={recipe.title} />
+                        <h3>{recipe.title}</h3>
+                        <p>Missed ingredients: {recipe.missedIngredientCount}</p>
+                        <p>Used ingredients: {recipe.usedIngredientCount}</p>
+                        <p>Unused ingredients: {recipe.unusedIngredients.length}</p>
+                        <a href={recipe.sourceUrl} target="_blank" rel="noopener noreferrer">View recipe</a>
 
                         </Link>
 

@@ -58,10 +58,10 @@ const LoadingProvider = ({ children }) => {
       });
   };
 
-  const getUserRecipes = () => {
+  const getAllUserRecipes = () => {
     get("/recipes/user-recipes")
       .then((results) => {
-        console.log("ALL USER RECIPES", results.data);
+        console.log("ALL USER RECIPES", results);
         setUserRecipes(results.data);
       })
       .catch((err) => {
@@ -69,10 +69,24 @@ const LoadingProvider = ({ children }) => {
       });
   };
 
+  const getUserRecipes = (userId) => {
+    setIsLoading(true);
+    get(`/users/profile/${userId}`)
+      .then((results) => {
+        console.log(`USER ${userId} RECIPES`, results);
+        setUserRecipes(results.data.recipes);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
+  };
+
   const getUserRecipeDetails = (recipeId) => {
     get(`/recipes/user-recipe-details/${recipeId}`)
       .then((results) => {
-        console.log("User Recipe Detail", results.data);
+        console.log("User Recipe Detail", results);
         setUserRecipeDetails(results.data);
       })
       .catch((err) => {
@@ -85,7 +99,7 @@ const LoadingProvider = ({ children }) => {
       console.log("Calling API");
       axios
         .get(
-          "https://api.spoonacular.com/food/search?apiKey=224dd7450e7d4cfa9bf65a747f11fd61&number=20"
+          "https://api.spoonacular.com/food/search?apiKey=224dd7450e7d4cfa9bf65a747f11fd61&number=100"
         )
         .then((response) => {
           console.log(response.data);
@@ -126,8 +140,8 @@ const LoadingProvider = ({ children }) => {
     <LoadingContext.Provider
       value={{
         deleteRecipe,
-        setUser,
         user,
+        setUser,
         setMessage,
         setTimedMessage,
         setIsLoading,
@@ -146,6 +160,7 @@ const LoadingProvider = ({ children }) => {
         getRecipeByIngredients,
         ingredients,
         setIngredients,
+        getAllUserRecipes
       }}
     >
       {children}

@@ -1,9 +1,0 @@
-img{
-    height: 20vh;
-}
-
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }

@@ -12,42 +12,52 @@ const RecipeDetails = () => {
   }, []);
 
   return (
-    <div className="recipeDetails-details">
-      <h1>Recipe Details</h1>
-
-      {recipeDetails ? (
-        <div>
-          <h2>{recipeDetails.title}</h2>
+    <div className="recipe-details">
+      <h1>{recipeDetails ? recipeDetails.title : "Loading..."}</h1>
+      {recipeDetails && (
+        <>
           <img
             src={`https://spoonacular.com/recipeImages/${recipeDetails.id}-480x360.jpg`}
             alt={recipeDetails.title}
           />
-
-          <p>{recipeDetails.readyInMinutes}</p>
-          <p>{recipeDetails.servings / 100}</p>
-
-          {recipeDetails.extendedIngredients.map((ingredient) => {
-            return (
-              <div>
-                <p>{ingredient.original}</p>
-              </div>
-            );
-          })}
-          {recipeDetails.analyzedInstructions.map((instruction) => {
-            return (
-              <div>
-                <h3>{instruction.name}</h3>
-                <ol>
-                  {instruction.steps.map((step) => {
-                    return <li>{step.step}</li>;
-                  })}
-                </ol>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <h4>Loading...</h4>
+          <div>
+            <p>
+              Ready in: {recipeDetails.readyInMinutes}{" "}
+              {recipeDetails.readyInMinutes === 1 ? "minute" : "minutes"}
+            </p>
+            <p>
+              Serves:  
+              {recipeDetails.servings / 100 === 1
+                ? "1 person"
+                : recipeDetails.servings / 100 + " people"}
+            </p>
+          </div>
+          <div className="ingredients-list">
+            <h2>Ingredients:</h2>
+            <ul>
+              {recipeDetails.extendedIngredients.map((ingredient) => (
+                <li key={ingredient.id}>{ingredient.original}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2>Instructions:</h2>
+            {recipeDetails.analyzedInstructions.length > 0 ? (
+              recipeDetails.analyzedInstructions.map((instruction) => (
+                <div className="instructions-list" key={instruction.name}>
+                  <h3>{instruction.name}</h3>
+                  <ol>
+                    {instruction.steps.map((step) => (
+                      <li key={step.number}>{step.step}</li>
+                    ))}
+                  </ol>
+                </div>
+              ))
+            ) : (
+              <p>No instructions available.</p>
+            )}
+          </div>
+        </>
       )}
     </div>
   );

@@ -41,10 +41,10 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h1>Signup</h1>
+    <div className="signup-form-div">
+      <h1 className="signup-form-title">Signup</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <label>Name</label>
         <input
           type="text"

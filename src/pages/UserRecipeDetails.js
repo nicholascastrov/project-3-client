@@ -4,13 +4,14 @@ import { LoadingContext } from "../context/loading.context";
 import { useParams, useNavigate } from "react-router-dom";
 
 const UserRecipeDetails = () => {
-  const { userRecipeDetails, getUserRecipeDetails, user, deleteRecipe } =
-    useContext(LoadingContext);
+  const { userRecipeDetails, getUserRecipeDetails, user, deleteRecipe } = useContext(LoadingContext);
+
   const { id } = useParams();
 
   const navigate = useNavigate();
 
   const checkOwner = (recipeOwner, userId) => {
+    console.log("Checking owner" , recipeOwner, userId)
     return recipeOwner === userId;
   };
 
@@ -27,18 +28,15 @@ const UserRecipeDetails = () => {
     getUserRecipeDetails(id);
   }, []);
 
-  console.log("TEST TEST",userRecipeDetails.author, user._id)
-
-
 
   return (
     <div className="userRecipeDetails-details">
-      <h1>Recipe Details</h1>
 
       {userRecipeDetails ? (
         <div key="user-recipe-details">
           <h2>{userRecipeDetails.title}</h2>
-          <p>By {userRecipeDetails.author}</p>
+          <h3>{userRecipeDetails.description}</h3>
+          <p>By {userRecipeDetails.author.name}</p>
           <img src={userRecipeDetails.image} alt={userRecipeDetails.title} />
           <p>Preparation Time: {userRecipeDetails.prep_time} minutes</p>
           <p>Servings: {userRecipeDetails.servings}</p>
@@ -54,7 +52,7 @@ const UserRecipeDetails = () => {
               return <li key={`direction-${index}`}>{step}</li>;
             })}
           </ol>
-          {user && checkOwner(userRecipeDetails.author, user._id) && (
+          {user && checkOwner(userRecipeDetails.author._id, user._id) && (
             <div>
               <button onClick={() => handleEditClick(userRecipeDetails._id, user._id)}>Edit Recipe</button>
               <button onClick={() =>handleDeleteClick(userRecipeDetails._id, user._id)}>Delete Recipe</button>

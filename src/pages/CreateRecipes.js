@@ -23,6 +23,11 @@ const CreateRecipes = () => {
     console.log("NEW POST", newRecipe);
   };
 
+  function adjustInputHeight(element) {
+    element.style.height = "auto";
+    element.style.height = element.scrollHeight + "px";
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -41,69 +46,74 @@ const CreateRecipes = () => {
   };
 
   return (
-    <div className="all-posts">
-      <div>Create Recipes</div>
+    <div className="create-recipes">
+      <h2>Create Recipes</h2>
 
       {user ? (
-        <form onSubmit={handleSubmit}>
-          <label>Title</label>
-          <input
-            type="text"
-            name="title"
-            value={newRecipe.title}
-            onChange={handleChange}
-          ></input>
+        <div className='form-group'>
 
-          <label>Description</label>
-          <input
-            type="text"
-            name="description"
-            value={newRecipe.description}
-            onChange={handleChange}
-          ></input>
+            <form onSubmit={handleSubmit}>
+            <label>Title</label>
+            <input
+                type="text"
+                name="title"
+                value={newRecipe.title}
+                onChange={handleChange}
+            ></input>
 
-          <label>Image</label>
-          <input
-            type="text"
-            name="image"
-            value={newRecipe.image}
-            onChange={handleChange}
-          ></input>
+            <label>Description</label>
+            <input
+                type="text"
+                name="description"
+                value={newRecipe.description}
+                onChange={handleChange}
+            ></input>
 
-          <label>Prep Time</label>
-          <input
-            type="text"
-            name="prep_time"
-            value={newRecipe.prep_time}
-            onChange={handleChange}
-          ></input>
+            <label>Image</label>
+            <input
+                type="text"
+                name="image"
+                value={newRecipe.image}
+                onChange={handleChange}
+            ></input>
 
-          <label>Servings</label>
-          <input
-            type="number"
-            name="servings"
-            value={newRecipe.servings}
-            onChange={handleChange}
-          ></input>
+            <label>Prep Time</label>
+            <input
+                type="text"
+                name="prep_time"
+                value={newRecipe.prep_time}
+                onChange={handleChange}
+            ></input>
 
-          <label>Ingredients</label>
-          <input
-            type="text"
-            name="ingredients"
-            value={newRecipe.ingredients}
-            onChange={handleChange}
-          ></input>
+            <label>Servings</label>
+            <input
+                type="number"
+                name="servings"
+                value={newRecipe.servings}
+                onChange={handleChange}
+            ></input>
 
-          <label>Directions</label>
-          <input
-            type="text"
-            name="directions"
-            value={newRecipe.directions}
-            onChange={handleChange}
-          ></input>
+            <label>Ingredients</label>
+            <input
+                type="text"
+                name="ingredients"
+                value={newRecipe.ingredients}
+                onChange={handleChange}
+            ></input>
 
-          <button type="submit">Create Recipe</button>
-        </form>
+            <label>Directions</label>
+            <input
+                type="text"
+                name="directions"
+                value={newRecipe.directions}
+                onChange={handleChange}
+                onInput={(e) => adjustInputHeight(e.target)}
+            ></input>
+
+            <button type="submit">Create Recipe</button>
+            </form>
+
+        </div>
       ) : (
         <h4>Loading...</h4>
       )}

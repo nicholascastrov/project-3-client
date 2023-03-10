@@ -21,7 +21,7 @@ const ShoppingListProvider = ({ children }) => {
 
     const getIngredients = (ingredientName) => {
         axios
-        .get(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientName}&apiKey=1caedf13f02c4f759c35f09216e5ff4a`)
+        .get(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientName}&apiKey=224dd7450e7d4cfa9bf65a747f11fd61`)
         .then((response) => {
           console.log(response.data)
           setfoundIngredients(response.data)

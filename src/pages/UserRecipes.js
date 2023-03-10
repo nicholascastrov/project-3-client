@@ -3,33 +3,33 @@ import { Link } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
 
 const UserRecipes = () => {
-  const { userRecipes, getUserRecipes } = useContext(LoadingContext);
+  const { userRecipes, getAllUserRecipes } = useContext(LoadingContext);
 
   useEffect(() => {
-    getUserRecipes();
+    getAllUserRecipes();
   }, []);
 
   return (
-    <div>
-      <h1>User Recipes</h1>
+<div className="user-recipes-container">
+  <h1 className="user-recipes-title">User Recipes</h1>
 
-      {userRecipes ? (
-        <>
-          {userRecipes.map((recipe) => {
-            return (
-              <div key={recipe._id}>
-                <Link to={`/user-recipe-details/${recipe._id}`}>
-                  <h2>{recipe.title}</h2>
-                  <img src={recipe.image} alt={recipe.name} />
-                </Link>
-              </div>
-            );
-          })}
-        </>
-      ) : (
-        <h4>Loading...</h4>
-      )}
+  {userRecipes ? (
+    <div className="recipe-list-container">
+      {userRecipes.map((recipe) => {
+        return (
+          <div className="recipe-item" key={recipe._id}>
+            <Link className="recipe-link" to={`/user-recipe-details/${recipe._id}`}>
+              <h2 className="recipe-title">{recipe.title}</h2>
+              <img className="recipe-image" src={recipe.image} alt={recipe.name} />
+            </Link>
+          </div>
+        );
+      })}
     </div>
+  ) : (
+    <h4 className="loading-message">Loading...</h4>
+  )}
+</div>
   );
 };
 

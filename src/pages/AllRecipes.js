@@ -10,22 +10,22 @@ const AllRecipes = () => {
   }, []);
 
   return (
-    <div>
+    <div className="all-recipes">
       <h1>All Recipes</h1>
 
       {recipes ? (
-        <>
+        <div className="all-recipe-grid">
           {recipes.map((recipe) => {
             return (
-              <div key={recipe.id}>
+              <div key={recipe.id} className="all-recipe-card">
                 <Link to={`/recipe-details/${recipe.id}`}>
-                  <h2>{recipe.name}</h2>
                   <img src={recipe.image} alt={recipe.name} />
+                  <h2>{recipe.name}</h2>
                 </Link>
               </div>
             );
           })}
-        </>
+        </div>
       ) : (
         <h4>Loading...</h4>
       )}

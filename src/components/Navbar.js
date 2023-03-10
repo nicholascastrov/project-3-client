@@ -1,4 +1,5 @@
 import React from "react";
+import { FaUser, FaPlus, FaSearch, FaList, FaSignOutAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { LoadingContext } from "../context/loading.context";
@@ -13,31 +14,40 @@ const Navbar = () => {
   const { logout } = useContext(AuthContext);
 
   return (
-    <nav>
-      <Link to={"/"}>Home</Link>
-      <Link to={"/all-recipes"}>All Recipes</Link>
-      <Link to={"/user-recipes"}>User Recipes</Link>
+    <div className="navbar-div">
 
-      {getToken() ? (
-        <>
-          {user && user._id && (
-            <>
-              <Link to={`/profile/${user._id}`}>Profile</Link>
-              <Link to={`/add-recipe/${user._id}`}>New Recipe</Link>
-              <Link to={"/search-by-ingredients"}>What's in your Fridge?</Link>
-              <Link to={'/shopping-list/:userId'}>Shopping List</Link>
+      <nav className="navbar">
+        
+        <Link to={"/"}>Home</Link>
+        <Link to={"/all-recipes"}>All Recipes</Link>
+        <Link to={"/user-recipes"}>User Recipes</Link>
 
-              <button onClick={logout}>Logout</button>
-            </>
-          )}
-        </>
-      ) : (
-        <>
-          <Link to={"/signup"}>Signup</Link>
-          <Link to={"/login"}>Login</Link>
-        </>
-      )}
-    </nav>
+        {getToken() ? (
+          <>
+            {user && user._id && (
+              <>
+                <Link to={`/add-recipe/${user._id}`}><FaPlus />New Recipe</Link>
+                <Link to={"/search-by-ingredients"}><FaSearch />What's in your Fridge?</Link>
+                <Link to={'/shopping-list/:userId'}><FaList />Shopping List</Link>
+                <Link to={`/profile/${user._id}`}><FaUser />Profile</Link>
+
+                <button onClick={logout}><FaSignOutAlt/>Logout</button>
+              </>
+            )}
+          </>
+        ) : (
+          <>
+            <Link to={"/signup"}>Signup</Link>
+            <Link to={"/login"}>Login</Link>
+          </>
+        )}
+      </nav>
+
+      {/* <hr/> */}
+          
+    </div>
+
+
   );
 };
 
