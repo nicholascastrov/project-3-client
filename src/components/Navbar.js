@@ -17,6 +17,8 @@ const Navbar = () => {
     <div className="navbar-div">
 
       <nav className="navbar">
+
+      <h1>SIEVE</h1>
         
         <Link to={"/"}>Home</Link>
         <Link to={"/all-recipes"}>All Recipes</Link>
@@ -26,7 +28,7 @@ const Navbar = () => {
           <>
             {user && user._id && (
               <>
-                <Link to={`/add-recipe/${user._id}`}><FaPlus />New Recipe</Link>
+                <Link to={`/add-recipe/${user._id}`}><FaPlus />Create Recipe</Link>
                 <Link to={"/search-by-ingredients"}><FaSearch />What's in your Fridge?</Link>
                 <Link to={'/shopping-list/:userId'}><FaList />Shopping List</Link>
                 <Link to={`/profile/${user._id}`}><FaUser />Profile</Link>
